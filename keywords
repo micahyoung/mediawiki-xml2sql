@@ -9,9 +9,11 @@ enum element {
   el_namespaces,
   el_namespace,
   el_page,
-  el_redirect,
   el_title,
+  el_ns,
   el_id,
+  el_redirect,
+  el_sha1,
   el_restrictions,
   el_revision,
   el_timestamp,
@@ -34,9 +36,11 @@ case,         el_case
 namespaces,   el_namespaces
 namespace,    el_namespace
 page,         el_page
-redirect,     el_redirect
 title,        el_title
+ns,           el_ns
 id,           el_id
+redirect,     el_redirect
+sha1,         el_sha1
 restrictions, el_restrictions
 revision,     el_revision
 timestamp,    el_timestamp

@@ -41,9 +41,11 @@ enum element {
   el_namespaces,
   el_namespace,
   el_page,
-  el_redirect,
   el_title,
+  el_ns,
   el_id,
+  el_redirect,
+  el_sha1,
   el_restrictions,
   el_revision,
   el_timestamp,
@@ -54,15 +56,15 @@ enum element {
   el_comment,
   el_text,
 };
-#line 26 "keywords"
+#line 28 "keywords"
 struct eltmap { char *name; enum element t; };
 
-#define TOTAL_KEYWORDS 21
+#define TOTAL_KEYWORDS 23
 #define MIN_WORD_LENGTH 2
 #define MAX_WORD_LENGTH 12
-#define MIN_HASH_VALUE 2
-#define MAX_HASH_VALUE 34
-/* maximum key range = 33, duplicates = 0 */
+#define MIN_HASH_VALUE 4
+#define MAX_HASH_VALUE 39
+/* maximum key range = 36, duplicates = 0 */
 
 #ifdef __GNUC__
 __inline
@@ -78,32 +80,32 @@ hash (str, len)
 {
   static const unsigned char asso_values[] =
     {
-      35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
-      35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
-      35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
-      35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
-      35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
-      35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
-      35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
-      35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
-      35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
-      35, 35, 35, 35, 35, 35, 35, 35,  3,  5,
-       0,  0, 35, 25, 35,  0, 35, 35, 35,  5,
-      10, 15, 20, 35,  0,  5,  0, 15, 35, 35,
-      35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
-      35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
-      35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
-      35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
-      35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
-      35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
-      35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
-      35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
-      35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
-      35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
-      35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
-      35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
-      35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
-      35, 35, 35, 35, 35, 35
+      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
+      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
+      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
+      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
+      40, 40, 40, 40, 40, 40, 40, 40, 40, 30,
+      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
+      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
+      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
+      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
+      40, 40, 40, 40, 40, 40, 40, 40,  3,  5,
+      15,  0, 40, 25, 40, 15, 40, 40, 40,  5,
+      15, 15, 10, 40,  0,  5,  0, 10, 40, 40,
+      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
+      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
+      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
+      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
+      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
+      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
+      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
+      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
+      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
+      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
+      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
+      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
+      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
+      40, 40, 40, 40, 40, 40
     };
   return len + asso_values[(unsigned char)str[len - 1]] + asso_values[(unsigned char)str[0]];
 }
@@ -121,56 +123,61 @@ lu_elt (str, len)
 {
   static const struct eltmap wordlist[] =
     {
-      {""}, {""},
-#line 39 "keywords"
-      {"id",           el_id},
-      {""},
-#line 48 "keywords"
+      {""}, {""}, {""}, {""},
+#line 52 "keywords"
       {"text",         el_text},
-#line 38 "keywords"
+#line 39 "keywords"
       {"title",        el_title},
       {""},
-#line 31 "keywords"
-      {"base",         el_base},
-#line 37 "keywords"
-      {"redirect",     el_redirect},
 #line 33 "keywords"
+      {"base",         el_base},
+#line 42 "keywords"
+      {"redirect",     el_redirect},
+#line 35 "keywords"
       {"case",         el_case},
-#line 46 "keywords"
+#line 50 "keywords"
       {"minor",        el_minor},
       {""},
-#line 47 "keywords"
+#line 51 "keywords"
       {"comment",      el_comment},
-#line 30 "keywords"
+#line 32 "keywords"
       {"sitename",     el_sitename},
-#line 28 "keywords"
-      {"mediawiki",    el_mediawiki},
+#line 38 "keywords"
+      {"page",         el_page},
       {""},
-#line 43 "keywords"
+#line 47 "keywords"
       {"contributor",  el_contributor},
-#line 40 "keywords"
+#line 44 "keywords"
       {"restrictions", el_restrictions},
-#line 41 "keywords"
+#line 48 "keywords"
+      {"username",     el_username},
+#line 46 "keywords"
+      {"timestamp",    el_timestamp},
+      {""}, {""},
+#line 40 "keywords"
+      {"ns",           el_ns},
+#line 45 "keywords"
       {"revision",     el_revision},
-#line 35 "keywords"
+#line 37 "keywords"
       {"namespace",    el_namespace},
       {""}, {""},
-#line 45 "keywords"
+#line 49 "keywords"
       {"ip",           el_ip},
-#line 44 "keywords"
-      {"username",     el_username},
-#line 36 "keywords"
-      {"page",         el_page},
-#line 34 "keywords"
-      {"namespaces",   el_namespaces},
-      {""}, {""},
-#line 29 "keywords"
+#line 31 "keywords"
       {"siteinfo",     el_siteinfo},
-#line 42 "keywords"
-      {"timestamp",    el_timestamp},
+#line 30 "keywords"
+      {"mediawiki",    el_mediawiki},
+#line 36 "keywords"
+      {"namespaces",   el_namespaces},
+      {""},
+#line 41 "keywords"
+      {"id",           el_id},
+      {""},
+#line 34 "keywords"
+      {"generator",    el_generator},
       {""}, {""}, {""}, {""},
-#line 32 "keywords"
-      {"generator",    el_generator}
+#line 43 "keywords"
+      {"sha1",         el_sha1}
     };
 
   if (len <= MAX_WORD_LENGTH && len >= MIN_WORD_LENGTH)
