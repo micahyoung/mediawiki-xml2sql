@@ -1,4 +1,4 @@
-/* C code produced by gperf version 3.0.1 */
+/* C code produced by gperf version 3.0.3 */
 /* Command-line: gperf -gptoC -Nlu_elt keywords  */
 /* Computed positions: -k'1,$' */
 
@@ -41,6 +41,7 @@ enum element {
   el_namespaces,
   el_namespace,
   el_page,
+  el_redirect,
   el_title,
   el_id,
   el_restrictions,
@@ -53,15 +54,15 @@ enum element {
   el_comment,
   el_text,
 };
-#line 25 "keywords"
+#line 26 "keywords"
 struct eltmap { char *name; enum element t; };
 
-#define TOTAL_KEYWORDS 20
+#define TOTAL_KEYWORDS 21
 #define MIN_WORD_LENGTH 2
 #define MAX_WORD_LENGTH 12
-#define MIN_HASH_VALUE 4
-#define MAX_HASH_VALUE 42
-/* maximum key range = 39, duplicates = 0 */
+#define MIN_HASH_VALUE 2
+#define MAX_HASH_VALUE 34
+/* maximum key range = 33, duplicates = 0 */
 
 #ifdef __GNUC__
 __inline
@@ -77,38 +78,41 @@ hash (str, len)
 {
   static const unsigned char asso_values[] =
     {
-      43, 43, 43, 43, 43, 43, 43, 43, 43, 43,
-      43, 43, 43, 43, 43, 43, 43, 43, 43, 43,
-      43, 43, 43, 43, 43, 43, 43, 43, 43, 43,
-      43, 43, 43, 43, 43, 43, 43, 43, 43, 43,
-      43, 43, 43, 43, 43, 43, 43, 43, 43, 43,
-      43, 43, 43, 43, 43, 43, 43, 43, 43, 43,
-      43, 43, 43, 43, 43, 43, 43, 43, 43, 43,
-      43, 43, 43, 43, 43, 43, 43, 43, 43, 43,
-      43, 43, 43, 43, 43, 43, 43, 43, 43, 43,
-      43, 43, 43, 43, 43, 43, 43, 43,  3, 15,
-       5,  0, 43,  0, 43, 20, 43, 43, 43,  5,
-       5, 15, 20, 43,  0,  0,  0, 10, 43, 43,
-      43, 43, 43, 43, 43, 43, 43, 43, 43, 43,
-      43, 43, 43, 43, 43, 43, 43, 43, 43, 43,
-      43, 43, 43, 43, 43, 43, 43, 43, 43, 43,
-      43, 43, 43, 43, 43, 43, 43, 43, 43, 43,
-      43, 43, 43, 43, 43, 43, 43, 43, 43, 43,
-      43, 43, 43, 43, 43, 43, 43, 43, 43, 43,
-      43, 43, 43, 43, 43, 43, 43, 43, 43, 43,
-      43, 43, 43, 43, 43, 43, 43, 43, 43, 43,
-      43, 43, 43, 43, 43, 43, 43, 43, 43, 43,
-      43, 43, 43, 43, 43, 43, 43, 43, 43, 43,
-      43, 43, 43, 43, 43, 43, 43, 43, 43, 43,
-      43, 43, 43, 43, 43, 43, 43, 43, 43, 43,
-      43, 43, 43, 43, 43, 43, 43, 43, 43, 43,
-      43, 43, 43, 43, 43, 43
+      35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
+      35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
+      35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
+      35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
+      35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
+      35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
+      35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
+      35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
+      35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
+      35, 35, 35, 35, 35, 35, 35, 35,  3,  5,
+       0,  0, 35, 25, 35,  0, 35, 35, 35,  5,
+      10, 15, 20, 35,  0,  5,  0, 15, 35, 35,
+      35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
+      35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
+      35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
+      35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
+      35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
+      35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
+      35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
+      35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
+      35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
+      35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
+      35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
+      35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
+      35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
+      35, 35, 35, 35, 35, 35
     };
   return len + asso_values[(unsigned char)str[len - 1]] + asso_values[(unsigned char)str[0]];
 }
 
 #ifdef __GNUC__
 __inline
+#ifdef __GNUC_STDC_INLINE__
+__attribute__ ((__gnu_inline__))
+#endif
 #endif
 const struct eltmap *
 lu_elt (str, len)
@@ -117,55 +121,56 @@ lu_elt (str, len)
 {
   static const struct eltmap wordlist[] =
     {
-      {""}, {""}, {""}, {""},
-#line 46 "keywords"
-      {"text",         el_text},
-#line 36 "keywords"
-      {"title",        el_title},
-      {""},
-#line 30 "keywords"
-      {"base",         el_base},
-#line 29 "keywords"
-      {"sitename",     el_sitename},
-#line 31 "keywords"
-      {"generator",    el_generator},
-#line 44 "keywords"
-      {"minor",        el_minor},
-      {""},
-#line 38 "keywords"
-      {"restrictions", el_restrictions},
+      {""}, {""},
 #line 39 "keywords"
-      {"revision",     el_revision},
-#line 34 "keywords"
-      {"namespace",    el_namespace},
-#line 33 "keywords"
-      {"namespaces",   el_namespaces},
-      {""}, {""},
-#line 42 "keywords"
-      {"username",     el_username},
-#line 32 "keywords"
-      {"case",         el_case},
-      {""}, {""},
-#line 45 "keywords"
-      {"comment",      el_comment},
-#line 28 "keywords"
-      {"siteinfo",     el_siteinfo},
-#line 35 "keywords"
-      {"page",         el_page},
-      {""},
-#line 41 "keywords"
-      {"contributor",  el_contributor},
-#line 37 "keywords"
       {"id",           el_id},
       {""},
+#line 48 "keywords"
+      {"text",         el_text},
+#line 38 "keywords"
+      {"title",        el_title},
+      {""},
+#line 31 "keywords"
+      {"base",         el_base},
+#line 37 "keywords"
+      {"redirect",     el_redirect},
+#line 33 "keywords"
+      {"case",         el_case},
+#line 46 "keywords"
+      {"minor",        el_minor},
+      {""},
+#line 47 "keywords"
+      {"comment",      el_comment},
+#line 30 "keywords"
+      {"sitename",     el_sitename},
+#line 28 "keywords"
+      {"mediawiki",    el_mediawiki},
+      {""},
+#line 43 "keywords"
+      {"contributor",  el_contributor},
 #line 40 "keywords"
+      {"restrictions", el_restrictions},
+#line 41 "keywords"
+      {"revision",     el_revision},
+#line 35 "keywords"
+      {"namespace",    el_namespace},
+      {""}, {""},
+#line 45 "keywords"
+      {"ip",           el_ip},
+#line 44 "keywords"
+      {"username",     el_username},
+#line 36 "keywords"
+      {"page",         el_page},
+#line 34 "keywords"
+      {"namespaces",   el_namespaces},
+      {""}, {""},
+#line 29 "keywords"
+      {"siteinfo",     el_siteinfo},
+#line 42 "keywords"
       {"timestamp",    el_timestamp},
       {""}, {""}, {""}, {""},
-#line 27 "keywords"
-      {"mediawiki",    el_mediawiki},
-      {""}, {""}, {""}, {""}, {""}, {""}, {""},
-#line 43 "keywords"
-      {"ip",           el_ip}
+#line 32 "keywords"
+      {"generator",    el_generator}
     };
 
   if (len <= MAX_WORD_LENGTH && len >= MIN_WORD_LENGTH)
