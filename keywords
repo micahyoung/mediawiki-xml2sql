@@ -6,9 +6,12 @@ enum element {
   el_base,
   el_generator,
   el_case,
+  el_format,
+  el_model,
   el_namespaces,
   el_namespace,
   el_page,
+  el_parentid,
   el_title,
   el_ns,
   el_id,
@@ -33,9 +36,12 @@ sitename,     el_sitename
 base,         el_base
 generator,    el_generator
 case,         el_case
+format,       el_format
+model,        el_model
 namespaces,   el_namespaces
 namespace,    el_namespace
 page,         el_page
+parentid,     el_parentid
 title,        el_title
 ns,           el_ns
 id,           el_id

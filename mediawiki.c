@@ -38,9 +38,12 @@ enum element {
   el_base,
   el_generator,
   el_case,
+  el_format,
+  el_model,
   el_namespaces,
   el_namespace,
   el_page,
+  el_parentid,
   el_title,
   el_ns,
   el_id,
@@ -56,10 +59,10 @@ enum element {
   el_comment,
   el_text,
 };
-#line 28 "keywords"
+#line 31 "keywords"
 struct eltmap { char *name; enum element t; };
 
-#define TOTAL_KEYWORDS 23
+#define TOTAL_KEYWORDS 26
 #define MIN_WORD_LENGTH 2
 #define MAX_WORD_LENGTH 12
 #define MIN_HASH_VALUE 4
@@ -90,7 +93,7 @@ hash (str, len)
       40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
       40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
       40, 40, 40, 40, 40, 40, 40, 40,  3,  5,
-      15,  0, 40, 25, 40, 15, 40, 40, 40,  5,
+      15,  0,  0, 25, 40, 15, 40, 40,  5,  5,
       15, 15, 10, 40,  0,  5,  0, 10, 40, 40,
       40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
       40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
@@ -124,59 +127,62 @@ lu_elt (str, len)
   static const struct eltmap wordlist[] =
     {
       {""}, {""}, {""}, {""},
-#line 52 "keywords"
+#line 58 "keywords"
       {"text",         el_text},
-#line 39 "keywords"
+#line 45 "keywords"
       {"title",        el_title},
-      {""},
-#line 33 "keywords"
+#line 39 "keywords"
+      {"format",       el_format},
+#line 36 "keywords"
       {"base",         el_base},
-#line 42 "keywords"
+#line 48 "keywords"
       {"redirect",     el_redirect},
-#line 35 "keywords"
+#line 38 "keywords"
       {"case",         el_case},
-#line 50 "keywords"
+#line 56 "keywords"
       {"minor",        el_minor},
       {""},
-#line 51 "keywords"
+#line 57 "keywords"
       {"comment",      el_comment},
-#line 32 "keywords"
+#line 35 "keywords"
       {"sitename",     el_sitename},
-#line 38 "keywords"
+#line 43 "keywords"
       {"page",         el_page},
-      {""},
-#line 47 "keywords"
+#line 40 "keywords"
+      {"model",        el_model},
+#line 53 "keywords"
       {"contributor",  el_contributor},
-#line 44 "keywords"
+#line 50 "keywords"
       {"restrictions", el_restrictions},
-#line 48 "keywords"
+#line 54 "keywords"
       {"username",     el_username},
-#line 46 "keywords"
+#line 52 "keywords"
       {"timestamp",    el_timestamp},
       {""}, {""},
-#line 40 "keywords"
+#line 46 "keywords"
       {"ns",           el_ns},
-#line 45 "keywords"
+#line 51 "keywords"
       {"revision",     el_revision},
-#line 37 "keywords"
+#line 42 "keywords"
       {"namespace",    el_namespace},
       {""}, {""},
-#line 49 "keywords"
+#line 55 "keywords"
       {"ip",           el_ip},
-#line 31 "keywords"
+#line 34 "keywords"
       {"siteinfo",     el_siteinfo},
-#line 30 "keywords"
+#line 33 "keywords"
       {"mediawiki",    el_mediawiki},
-#line 36 "keywords"
+#line 41 "keywords"
       {"namespaces",   el_namespaces},
       {""},
-#line 41 "keywords"
+#line 47 "keywords"
       {"id",           el_id},
-      {""},
-#line 34 "keywords"
+#line 44 "keywords"
+      {"parentid",     el_parentid},
+#line 37 "keywords"
       {"generator",    el_generator},
       {""}, {""}, {""}, {""},
-#line 43 "keywords"
+#line 49 "keywords"
       {"sha1",         el_sha1}
     };
 
